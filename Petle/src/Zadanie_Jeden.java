@@ -6,7 +6,7 @@ public class Zadanie_Jeden {
 
         String option = "y";
 
-        while (option.equals("y")) {
+        while (true) {
             System.out.println("Podaj pierwsza liczbe: ");
             double firstNumber = sc.nextDouble();
 
@@ -36,17 +36,20 @@ public class Zadanie_Jeden {
                 }
             };
 
-            if (!Double.isNaN(result)) {
-                System.out.println("Wynik: " + result);
+            if (Double.isNaN(result)) {
+                continue;
             }
 
+            System.out.println("Wynik: " + result);
             System.out.println("Czy chcesz wykonać kolejne działanie? (y/n)");
             option = sc.next().toLowerCase();
 
+
             if (option.equals("n")) {
                 System.out.println(result % 2 == 0 ? "Wynik jest parzysty" : "Wynik jest nieparzysty");
+                break;
             }
-
         }
+        sc.close();
     }
 }
