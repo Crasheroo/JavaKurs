@@ -4,7 +4,6 @@ public class Zadanie_Jeden {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String option = "y";
 
         while (true) {
             System.out.println("Podaj pierwsza liczbe: ");
@@ -42,7 +41,7 @@ public class Zadanie_Jeden {
 
             System.out.println("Wynik: " + result);
             System.out.println("Czy chcesz wykonać kolejne działanie? (y/n)");
-            option = sc.next().toLowerCase();
+            String option = sc.next().toLowerCase();
 
 
             if (option.equals("n")) {
