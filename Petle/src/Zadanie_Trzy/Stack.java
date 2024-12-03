@@ -55,6 +55,10 @@ public class Stack<T> {
         return false;
     }
 
+    public void pushFirst(T value) {
+
+    }
+
 
     private static class Node<T> {
         private T value;
