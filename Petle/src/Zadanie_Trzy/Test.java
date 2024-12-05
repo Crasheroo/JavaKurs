@@ -10,9 +10,13 @@ public class Test {
 
         stackString.print();
         System.out.println();
+        
         stackString.remove("3");
         stackString.remove("2");
         stackString.print();
+        System.out.println();
 
+        stackString.addBottom("5");
+        stackString.print();
     }
 }
