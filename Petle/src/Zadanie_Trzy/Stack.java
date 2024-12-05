@@ -55,6 +55,20 @@ public class Stack<T> {
         return false;
     }
 
+    public void addBottom(T value) { //5
+        Node<T> node = new Node<>();
+        node.setValue(value);
+        node.setNext(null); //bo zawsze na samym dole jest (value, null)
+
+        Node<T> current = head;
+
+        while (current.getNext() != null) {
+            current = current.getNext();
+        }
+
+        current.setNext(node);
+    }
+
 
     private static class Node<T> {
         private T value;
