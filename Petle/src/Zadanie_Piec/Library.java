@@ -11,48 +11,7 @@ import java.util.Scanner;
 public class Library {
     public List<LibraryItem> libraryItems = new ArrayList<>();
 
-    public void controlLoop() throws UnavailableItemException {
-        Scanner scanner = new Scanner(System.in);
-        String title;
-        Option option;
-
-        do {
-            printOptions();
-            option = getOption();
-
-            switch (option) {
-                case ADD_MOVIE:
-                    addMovie();
-                    break;
-                case ADD_BOOK:
-                    addBook();
-                    break;
-                case PRINT:
-                    printItems();
-                    break;
-                case BORROW:
-                    System.out.printf("Podaj tytul:");
-                    title = scanner.nextLine();
-                    borrowItem(title);
-                    break;
-                case RETURN:
-                    System.out.printf("Podaj tytul:");
-                    title = scanner.nextLine();
-                    returnItem(title);
-                    break;
-                case NUMBER_OF_ITEMS:
-                    printNumberOfItems();
-                    break;
-                case EXIT:
-                    break;
-                default:
-                    System.out.println("Nie ma takiej opcji");
-            }
-
-        } while (option != Option.EXIT);
-    }
-
-    private void addMovie() {
+    void addMovie() {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Podaj tutyl: ");
         String title = scanner.nextLine();
@@ -66,29 +25,30 @@ public class Library {
         libraryItems.add(new Movie(title, director, time));
     }
 
-    private void addBook() {
+    public void addBook() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Podaj tutyl: ");
+        System.out.printf("Podaj tutyl: ");
         String title = scanner.nextLine();
 
-        System.out.println("Podaj autora: ");
+        System.out.printf("Podaj autora: ");
         String author = scanner.nextLine();
 
-        System.out.println("Podaj liczbe stron: ");
+        System.out.printf("Podaj liczbe stron: ");
         int pages = scanner.nextInt();
 
         libraryItems.add(new Book(title, author, pages));
 
     }
 
-    private void printItems() {
+    public void printItems() {
         System.out.println("Dostepne itemy:");
         for (LibraryItem libraryItem : libraryItems) {
             if (libraryItem.isAvailable) {
                 System.out.println(libraryItem);
             }
         }
+        System.out.println();
         System.out.println("Niedostepne itemy:");
         for (LibraryItem libraryItem : libraryItems) {
             if (!libraryItem.isAvailable) {
@@ -97,7 +57,7 @@ public class Library {
         }
     }
 
-    private void printNumberOfItems() {
+    public void printNumberOfItems() {
         int bookCount = 0;
         int movieCount = 0;
 
@@ -114,12 +74,12 @@ public class Library {
         System.out.println("Liczba wszystkich elementow: " + libraryItems.size());
     }
 
-    private void borrowItem(String title) throws UnavailableItemException {
+    public void borrowItem(String title) throws UnavailableItemException {
         LibraryItem item = searchItemByTitle(title);
         item.borrow();
     }
 
-    private void returnItem(String title) throws UnavailableItemException {
+    public void returnItem(String title) throws UnavailableItemException {
         LibraryItem item = searchItemByTitle(title);
         item.returnItem();
     }
@@ -133,7 +93,7 @@ public class Library {
         throw new UnavailableItemException("Nie ma takiego czegos");
     }
 
-    private Option getOption() {
+    public Option getOption() {
         Scanner scanner = new Scanner(System.in);
         boolean optionOk = false;
         Option option = null;
@@ -145,14 +105,14 @@ public class Library {
         return option;
     }
 
-    private void printOptions() {
+    public void printOptions() {
         System.out.println("Wybierz opcje:");
         for (Option option : Option.values()) {
             System.out.println(option.toString());
         }
     }
 
-    private enum Option {
+    public enum Option {
         ADD_MOVIE(1, "Dodaj film"),
         ADD_BOOK(2, "Dodaj ksiazke"),
         PRINT(3, "Wyswietl wszystkie elementy"),
