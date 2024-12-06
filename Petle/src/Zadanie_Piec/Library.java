@@ -6,6 +6,7 @@ import Zadanie_Piec.Items.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Library {
@@ -74,23 +75,34 @@ public class Library {
         System.out.println("Liczba wszystkich elementow: " + libraryItems.size());
     }
 
-    public void borrowItem(String title) throws UnavailableItemException {
-        LibraryItem item = searchItemByTitle(title);
-        item.borrow();
+    public void borrowItem(String title) {
+        Optional<LibraryItem> libraryItem = searchItemByTitle(title);
+        if (libraryItem.isPresent()) {
+            try {
+                libraryItem.get().borrow();
+            } catch (UnavailableItemException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            System.err.println("Ni ma itema");
+        }
     }
 
-    public void returnItem(String title) throws UnavailableItemException {
-        LibraryItem item = searchItemByTitle(title);
-        item.returnItem();
+    public void returnItem(String title) {
+        Optional<LibraryItem> libraryItem = searchItemByTitle(title);
+        libraryItem.ifPresentOrElse(
+                lb1 -> lb1.returnItem(),
+                () -> System.err.println("Ni ma itema")
+        );
     }
 
-    private LibraryItem searchItemByTitle(String title) throws UnavailableItemException {
+    private Optional<LibraryItem> searchItemByTitle(String title) {
         for (LibraryItem libraryItem : libraryItems) {
             if (libraryItem.getTitle().equals(title)) {
-                return libraryItem;
+                return Optional.of(libraryItem);
             }
         }
-        throw new UnavailableItemException("Nie ma takiego czegos");
+        return Optional.empty();
     }
 
     public Option getOption() {
