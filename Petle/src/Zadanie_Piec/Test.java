@@ -30,20 +30,12 @@ public class Test {
                 case BORROW:
                     System.out.printf("Podaj tytul: ");
                     title = scanner.nextLine();
-                    try {
-                        library.borrowItem(title);
-                    } catch (UnavailableItemException e) {
-                        System.err.println(e.getMessage());
-                    }
+                    library.borrowItem(title);
                     break;
                 case RETURN:
                     System.out.printf("Podaj tytul: ");
                     title = scanner.nextLine();
-                    try {
-                        library.returnItem(title);
-                    } catch (UnavailableItemException e) {
-                        System.err.println(e.getMessage());
-                    }
+                    library.returnItem(title);
                     break;
                 case NUMBER_OF_ITEMS:
                     library.printNumberOfItems();
