@@ -47,5 +47,7 @@ public class Test {
             }
 
         } while (option != Library.Option.EXIT);
+
+        scanner.close();
     }
 }
