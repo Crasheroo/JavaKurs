@@ -32,6 +32,6 @@ public class Movie extends LibraryItem {
 
     @Override
     public String toString() {
-        return title + "; " + director + "; " + time;
+        return "Film: " + title + "; " + director + "; " + time;
     }
 }

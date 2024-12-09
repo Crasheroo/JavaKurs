@@ -6,7 +6,7 @@ import Zadanie_Piec.Items.Book;
 import java.util.Scanner;
 
 public class Test {
-    public static void main(String[] args) throws UnavailableItemException {
+    public static void main(String[] args) {
         Library library = new Library();
 
         Scanner scanner = new Scanner(System.in);

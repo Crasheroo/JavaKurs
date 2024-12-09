@@ -32,6 +32,6 @@ public class Book extends LibraryItem {
 
     @Override
     public String toString() {
-        return title + "; " + author + "; " + pages;
+        return "Książka: " + title + "; " + author + "; " + pages;
     }
 }
