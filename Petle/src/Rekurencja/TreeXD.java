@@ -3,7 +3,23 @@ package Rekurencja;
 public class TreeXD {
     private Node head;
 
+    public boolean containsValue(int value) {
+      Node current = head;
 
+        while (current != null) {
+            if (current.getValue() == value) {
+                return true;
+            }
+
+            if (value < current.getValue()) {
+                current.getLeft();
+            } else if (value > current.getValue()) {
+                current.getRight();
+            }
+        }
+
+        return false;
+    }
 
     public void addNode(int value) {
         Node node = new Node();
@@ -13,7 +29,36 @@ public class TreeXD {
             return;
         }
         if (head != null) {
-            addRecursive(head, value);
+//            addRecursive(head, value);
+            addIterative(value);
+        }
+    }
+
+    private void addIterative(int value) {
+        Node node = new Node();
+        node.setValue(value);
+        if (head == null) {
+            head = node;
+            return;
+        }
+
+        Node parent = null;
+        Node current = head;
+        while (current != null) {
+            if (current.getValue() > value) {
+                parent = current;
+                current = current.getLeft();
+            }
+            else if (current.getValue() < value) {
+                parent = current;
+                current = current.getRight();
+            }
+        }
+
+        if (value > parent.getValue()) {
+            parent.setRight(node);
+        } else if (value < parent.getValue()) {
+            parent.setLeft(node);
         }
     }
 

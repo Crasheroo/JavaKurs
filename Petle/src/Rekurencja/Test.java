@@ -14,5 +14,13 @@ public class Test {
         tree.addNode(13);
 
         tree.print();
+        int search = 4;
+
+
+        if (tree.containsValue(search)) {
+            System.out.println("Znaleziono wartosc: " + search);
+        } else {
+            System.out.println("Nienaleziono wartosci: " + search);
+        }
     }
 }
