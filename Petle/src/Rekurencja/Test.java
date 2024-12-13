@@ -2,18 +2,24 @@ package Rekurencja;
 
 public class Test {
     public static void main(String[] args) {
-        TreeXD tree = new TreeXD();
+        BinaryTree tree = new BinaryTree();
 
-        tree.add(8);
-        tree.add(3);
-        tree.add(10);
-        tree.add(1);
-        tree.add(6);
-        tree.add(14);
-        tree.add(4);
-        tree.add(7);
-        tree.add(13);
+        tree.addIterative(8);
+        tree.addIterative(3);
+        tree.addIterative(10);
+        tree.addIterative(1);
+        tree.addIterative(6);
+        tree.addIterative(4);
+        tree.addIterative(7);
+        tree.addIterative(13);
 
         tree.print();
+        int search = 4;
+
+        if (tree.containsValue(search)) {
+            System.out.println("Znaleziono wartosc: " + search);
+        } else {
+            System.out.println("Nienaleziono wartosci: " + search);
+        }
     }
 }
