@@ -51,6 +51,22 @@ public class BinaryTree {
         }
     }
 
+    public Node addRecursive(Node current, int value) {
+        if (current == null) {
+            Node node = new Node();
+            node.setValue(value);
+            return node;
+        }
+
+        if (current.getValue() < value) {
+            current.setRight(addRecursive(current.getRight(), value));
+        }
+        else if (current.getValue() > value) {
+            current.setLeft(addRecursive(current.getLeft(), value));
+        }
+        return current;
+    }
+
     public void print() {
         print(root);
     }
