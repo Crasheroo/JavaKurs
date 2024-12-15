@@ -21,18 +21,31 @@ public class Exercises {
     private static final List<Holding> holdings = new HoldingGenerator().generate();
 
     public static void main(String[] args) {
-        System.out.println("Zadanie 1: " + getHoldingsWhereAreCompanies());
-        System.out.println("Zadanie 2: " + getHoldingNames());
-        System.out.println("Zadanie 3: " + getCompaniesAmount());
-        System.out.println("Zadanie 4: " + getAllUserAmount());
+        System.out.println(getHoldingsWhereAreCompanies());
+        System.out.println();
+        System.out.println(getHoldingNames());
+        System.out.println();
+        System.out.println(getCompaniesAmount());
+        System.out.println();
+        System.out.println(getAllUserAmount());
+        System.out.println();
         System.out.println(getUsersForPredicate(user -> user.getAge() == 33));
+        System.out.println();
         showAllUser();
+        System.out.println();
         System.out.println(getUserPerCompany());
+        System.out.println();
         System.out.println(createAccountsMap());
         System.out.println();
         System.out.println(getHoldingNamesAsString());
+        System.out.println();
         System.out.println(getAllCompaniesNamesAsLinkedList());
+        System.out.println();
         System.out.println(getCurenciesSet());
+        System.out.println();
+        System.out.println(getRichestMan());
+        System.out.println();
+        System.out.println(getFirstNCompany(7));
     }
 
 
@@ -162,7 +175,11 @@ public class Exercises {
      * Zwraca nazwy pierwszych N firm. Kolejność nie ma znaczenia.
      */
     private static Set<String> getFirstNCompany(final int n) {
-        return null;
+        return holdings.stream()
+                .flatMap(c -> c.getCompanies().stream())
+                .map(c -> c.getName())
+                .limit(n)
+                .collect(Collectors.toSet());
     }
 
     /**
