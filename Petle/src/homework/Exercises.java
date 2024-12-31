@@ -22,30 +22,38 @@ public class Exercises {
 
     public static void main(String[] args) {
         System.out.println(getHoldingsWhereAreCompanies());
-        System.out.println();
+        System.out.println("1.");
         System.out.println(getHoldingNames());
-        System.out.println();
+        System.out.println("2.");
         System.out.println(getCompaniesAmount());
-        System.out.println();
+        System.out.println("3.");
         System.out.println(getAllUserAmount());
-        System.out.println();
-        System.out.println(getUsersForPredicate(user -> user.getAge() == 33));
-        System.out.println();
+        System.out.println("4.");
+        System.out.println(getUsersForPredicate(Exercises::test));
+        System.out.println("5.");
         showAllUser();
-        System.out.println();
+        System.out.println("6.");
         System.out.println(getUserPerCompany());
-        System.out.println();
+        System.out.println("7.");
         System.out.println(createAccountsMap());
-        System.out.println();
+        System.out.println("8.");
         System.out.println(getHoldingNamesAsString());
-        System.out.println();
+        System.out.println("9.");
         System.out.println(getAllCompaniesNamesAsLinkedList());
-        System.out.println();
+        System.out.println("10.");
         System.out.println(getCurenciesSet());
-        System.out.println();
+        System.out.println("11.");
         System.out.println(getRichestMan());
-        System.out.println();
+        System.out.println("12.");
         System.out.println(getFirstNCompany(7));
+    }
+
+    public static boolean test(User user) {
+        if (user.getAge() == 33) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -53,21 +61,18 @@ public class Exercises {
      * Napisz metodę, która zwróci liczbę holdingów, w których jest przynajmniej jedna firma.
      */
     public static long getHoldingsWhereAreCompanies() {
-        long count = holdings.stream()
+        return holdings.stream()
                 .filter(holdings -> !holdings.getCompanies().isEmpty())
                 .count();
-
-        return count;
     }
 
     /**
      * Napisz metodę, która zwróci nazwy wszystkich holdingów pisane z wielkiej litery w formie listy.
      */
     public static List<String> getHoldingNames() {
-        List<String> listOfNames = holdings.stream()
+        return holdings.stream()
                 .map(holding -> holding.getName())
                 .toList();
-        return listOfNames;
     }
 
     /**
@@ -109,15 +114,13 @@ public class Exercises {
      * po zakończeniu działania strumienia.
      */
     public static LinkedList<String> getAllCompaniesNamesAsLinkedList() {
-        LinkedList<String> list = holdings.stream()
+        return holdings.stream()
                 .map(holding -> holding.getName())
                 .collect(
                         LinkedList::new,
                         LinkedList::add,
                         LinkedList::addAll
                 );
-
-        return list;
     }
 
     /**
@@ -134,14 +137,12 @@ public class Exercises {
      * Zwraca imiona użytkowników w formie zbioru, którzy spełniają podany warunek.
      */
     public static Set<String> getUsersForPredicate(final Predicate<User> userPredicate) {
-        Set<String> collect = holdings.stream()
+        return holdings.stream()
                 .flatMap(holding -> holding.getCompanies().stream())
                 .flatMap(users -> users.getUsers().stream())
                 .filter(userPredicate)
                 .map(u -> u.getFirstName())
                 .collect(Collectors.toSet());
-
-        return collect;
     }
 
     /**
@@ -161,6 +162,7 @@ public class Exercises {
         return holdings.stream()
                 .flatMap(c -> c.getCompanies().stream())
                 .flatMap(u -> u.getUsers().stream())
+                .filter(s -> s.getSex().equals(Sex.MAN))
                 .max(Comparator.comparing(c -> getUserAmountInPLN(c)));
     }
 
