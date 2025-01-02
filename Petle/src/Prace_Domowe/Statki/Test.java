@@ -16,7 +16,8 @@ public class Test {
 
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
-            int x, y;
+            int x;
+            int y;
 
             do  {
                 x = random.nextInt(5);

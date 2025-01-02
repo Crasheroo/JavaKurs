@@ -1,6 +1,6 @@
-package Prace_Domowe.Taka_Duza.Interfaces;
+package Prace_Domowe.Taka_Duza.util;
 
-import Prace_Domowe.Taka_Duza.Products.Product;
+import Prace_Domowe.Taka_Duza.model.Product;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
