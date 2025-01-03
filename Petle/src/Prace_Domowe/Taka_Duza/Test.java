@@ -1,11 +1,12 @@
 package Prace_Domowe.Taka_Duza;
 
-import Prace_Domowe.Taka_Duza.Interfaces.FunctionalInterfaces;
-import Prace_Domowe.Taka_Duza.Interfaces.Methods;
-import Prace_Domowe.Taka_Duza.Products.Appliance;
-import Prace_Domowe.Taka_Duza.Products.Book;
-import Prace_Domowe.Taka_Duza.Products.Electronics;
-import Prace_Domowe.Taka_Duza.Products.Product;
+import Prace_Domowe.Taka_Duza.service.ProductService;
+import Prace_Domowe.Taka_Duza.utils.FunctionalInterfaces;
+import Prace_Domowe.Taka_Duza.utils.Methods;
+import Prace_Domowe.Taka_Duza.model.Appliance;
+import Prace_Domowe.Taka_Duza.model.Book;
+import Prace_Domowe.Taka_Duza.model.Electronics;
+import Prace_Domowe.Taka_Duza.model.Product;
 
 import java.util.*;
 
