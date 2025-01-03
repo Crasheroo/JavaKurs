@@ -1,4 +1,4 @@
-package Prace_Domowe.Taka_Duza.Products;
+package Prace_Domowe.Taka_Duza.model;
 
 import java.util.Optional;
 
