@@ -1,4 +1,4 @@
-package Watki;
+package Watki.pingpong;
 
 import static java.lang.Thread.sleep;
 
