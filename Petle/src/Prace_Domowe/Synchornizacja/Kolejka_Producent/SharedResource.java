@@ -8,9 +8,9 @@ public class SharedResource {
         while (hasValue) {
             wait();
         }
-        value = newValue;
         hasValue = true;
-        System.out.println("Producent: " + newValue);
+        value = newValue;
+        System.out.println("Producent dodał: " + newValue);
         notifyAll();
     }
 
@@ -19,7 +19,7 @@ public class SharedResource {
             wait();
         }
         hasValue = false;
-        System.out.println("Konsument: " + value);
+        System.out.println("Konsument pobrał: " + value);
         notifyAll();
         return value;
     }

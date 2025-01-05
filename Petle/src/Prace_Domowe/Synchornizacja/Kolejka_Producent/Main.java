@@ -1,7 +1,7 @@
 package Prace_Domowe.Synchornizacja.Kolejka_Producent;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SharedResource sr = new SharedResource();
 
         Thread producer = new Thread(new Producer(sr));
