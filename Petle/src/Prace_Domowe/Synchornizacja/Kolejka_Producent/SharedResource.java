@@ -4,23 +4,24 @@ public class SharedResource {
     int value = 0;
     boolean hasValue = false;
 
-    public synchronized void produce(int newValue) throws InterruptedException {
-        while (hasValue) {
-            wait();
+    public void produce(int newValue) throws InterruptedException {
+        synchronized (this) {
+            while (hasValue) {
+                wait();
+            }
+            value = newValue;
+            hasValue = true;
+            System.out.println("Producent dodał: " + newValue);
+            notifyAll();
         }
-        hasValue = true;
-        value = newValue;
-        System.out.println("Producent dodał: " + newValue);
-        notifyAll();
     }
 
-    public synchronized int consume() throws InterruptedException {
+    public synchronized void consume() throws InterruptedException {
         while (!hasValue) {
             wait();
         }
         hasValue = false;
         System.out.println("Konsument pobrał: " + value);
         notifyAll();
-        return value;
     }
 }

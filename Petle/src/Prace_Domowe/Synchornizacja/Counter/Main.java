@@ -7,8 +7,8 @@ public class Main {
         Thread thread2 = new Thread(new MyThread(counter));
 
         thread1.start();
-        thread2.start();
         thread1.join();
+        thread2.start();
         thread2.join();
         System.out.println(counter.getCount());
     }

@@ -13,7 +13,5 @@ public class Main {
         consumer1.start();
         consumer2.start();
         consumer3.start();
-
-        // Nie konczy mi programu jakims cudem
     }
 }
