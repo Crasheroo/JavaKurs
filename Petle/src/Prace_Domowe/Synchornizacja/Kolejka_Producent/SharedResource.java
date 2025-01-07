@@ -1,27 +1,37 @@
 package Prace_Domowe.Synchornizacja.Kolejka_Producent;
 
 public class SharedResource {
-    int value = 0;
-    boolean hasValue = false;
+    private int value = 0;
+    public boolean hasValue = false;
+    private boolean isFinished = false;
 
-    public void produce(int newValue) throws InterruptedException {
-        synchronized (this) {
-            while (hasValue) {
-                wait();
-            }
-            value = newValue;
-            hasValue = true;
-            System.out.println("Producent dodał: " + newValue);
+    public synchronized void produce(int newValue) throws InterruptedException {
+        while (hasValue) {
+            wait();
+        }
+        value = newValue;
+        hasValue = true;
+//        System.out.println("Producent dodał: " + newValue);
+        notifyAll();
+    }
+
+    public synchronized void consume() throws InterruptedException {
+        while (!hasValue && !isFinished) {
+            wait();
+        }
+        if (hasValue) {
+            hasValue = false;
+//            System.out.println("Konsument pobrał: " + value);
             notifyAll();
         }
     }
 
-    public synchronized void consume() throws InterruptedException {
-        while (!hasValue) {
-            wait();
-        }
-        hasValue = false;
-        System.out.println("Konsument pobrał: " + value);
+    public synchronized void finish() {
+        isFinished = true;
         notifyAll();
+    }
+
+    public synchronized boolean isFinished() {
+        return isFinished;
     }
 }

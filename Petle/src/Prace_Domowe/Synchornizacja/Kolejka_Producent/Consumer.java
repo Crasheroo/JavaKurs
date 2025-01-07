@@ -1,6 +1,6 @@
 package Prace_Domowe.Synchornizacja.Kolejka_Producent;
 
-public class Consumer implements Runnable{
+public class Consumer implements Runnable {
     private final SharedResource sharedResource;
 
     public Consumer(SharedResource sharedResource) {
@@ -9,12 +9,15 @@ public class Consumer implements Runnable{
 
     @Override
     public void run() {
-        for (int i = 0; i <= 10; i++) {
-            try {
+        try {
+            while (true) {
                 sharedResource.consume();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                if (sharedResource.isFinished() && !sharedResource.hasValue) {
+                    break;
+                }
             }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }
